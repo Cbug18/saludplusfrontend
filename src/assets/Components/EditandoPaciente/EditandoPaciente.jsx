@@ -96,11 +96,11 @@ function EditarPaciente() {
   return (
     <div className="editar-paciente flex flex-col bg-blue-50">
       <div
-        className="relative bg-cover bg-center h-64"
+        className="relative bg-cover bg-center h-4/5"
         style={{
           backgroundImage: `url(${Rectangle2})`,
           backgroundSize: "cover",
-          height: "4/5",
+          height: "140vh",
         }}
       >
         <div className="bg-[#0071ab] text-white py-4">
