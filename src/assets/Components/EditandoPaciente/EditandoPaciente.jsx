@@ -1,4 +1,4 @@
-User
+
 import React, { useState } from "react";
 import axios from "axios";
 import Rectangle2 from "../../../public/Desktop1_Rectangle5.png";
