@@ -100,7 +100,7 @@ function EditarPaciente() {
         style={{
           backgroundImage: `url(${Rectangle2})`,
           backgroundSize: "cover",
-          height: "fit",
+          height: "4/5",
         }}
       >
         <div className="bg-[#0071ab] text-white py-4">
