@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Rectangle2 from "../../../public/Desktop1_Rectangle5.png";
 import Logo from "../../../public/fechasDelPaciente_LOGO_SALUD_PLUSremovebgpreview1.png";
 
 function EditarPaciente() {
@@ -94,21 +93,10 @@ function EditarPaciente() {
 
   return (
     <div className="editar-paciente flex flex-col bg-blue-50">
-      <div
-        className="relative bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${Rectangle2})`,
-          backgroundSize: "cover",
-          height: "140vh",
-        }}
-      >
+      <div className="relative bg-cover bg-center">
         <div className="bg-[#0071ab] text-white py-4">
           <div className="container mx-auto flex justify-center">
-            <img
-              className="w-12 h-12 object-cover"
-              alt="Logo SALUD PLUS"
-              src={Logo}
-            />
+            <img className="w-12 h-12 object-cover" alt="Logo SALUD PLUS" src={Logo} />
           </div>
         </div>
 
@@ -139,27 +127,24 @@ function EditarPaciente() {
         </div>
 
         {patientData.Dui && (
-          <form onSubmit={handleEditSubmit} className="form-paciente p-4 container mx-auto">
+          <div className="form-paciente p-4 container mx-auto">
             <h2 className="text-lg font-bold mb-4">Editar Paciente</h2>
 
             {/* ... (campos del formulario) */}
 
             <button
               type="submit"
+              onClick={handleEditSubmit}
               className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Guardar Cambios
             </button>
-          </form>
+          </div>
         )}
       </div>
 
       <div className="flex flex-col items-center justify-center bg-[#0071ab] py-4 m-0">
-        <img
-          className="w-12 h-12 object-cover"
-          alt="Logo SALUD PLUS"
-          src={Logo}
-        />
+        <img className="w-12 h-12 object-cover" alt="Logo SALUD PLUS" src={Logo} />
         <div>
           <p className="text-base p-2 text-white text-center">
             SaludPlus Cuidando tu bienestar, siempre a tu lado.
