@@ -39,7 +39,7 @@ function EditarPaciente() {
   const handleSearch = async () => {
     try {
       const response = await axios.get(
-        `https://saludplusweb-production.up.railway.app/api/updatepatients?name=${searchTerm}`
+        `https://saludplusweb-production.up.railway.app/api/getpatients?name=${searchTerm}`
       );
 
       if (response.data.data && response.data.data.length > 0) {
@@ -83,7 +83,7 @@ function EditarPaciente() {
     try {
       const { id } = formChanges;
       const response = await axios.patch(
-        `http://localhost:3001/api/v1/saludplus/updatepatients/${id}`,
+        `https://saludplusweb-production.up.railway.app/api/updatepatients/${id}`,
         formChanges
       );
       console.log(response.data);
