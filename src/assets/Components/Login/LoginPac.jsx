@@ -1,11 +1,45 @@
 import React from "react";
-import "../../../../src/index.css";
 import Rectangle from "../../../public/ingresarDoc_Rectangle6.png";
 import Logo from "../../../public/fechasDelPaciente_LOGO_SALUD_PLUSremovebgpreview1.png";
 import Logo2 from "../../../public/LOGO_SALUD_PLUS-removebg-preview 2.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../Services/saludPlusConsume";
+import { useState } from "react";
+import MenuPa from "../../Components/MenuPaciente/MenuPa"; 
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const result = await login(formData);
+
+      // Maneja la respuesta según tus necesidades
+      console.log("Resultado del login:", result);
+
+      // Almacena la información del usuario si el inicio de sesión es exitoso
+      setUser(result); // Reemplaza con la estructura real de tu usuario
+      setIsLoggedIn(true);
+
+      // Navega al usuario a la página deseada
+      navigate("/MenuPa");
+    } catch (error) {
+      console.error("Error durante el inicio de sesión:", error);
+      setError("Credenciales inválidas"); // Puedes ajustar el mensaje de error según tus necesidades
+    }
+  };
+
+  if (isLoggedIn) {
+    // Si el usuario está autenticado, renderiza el componente MenuPa
+    return <MenuPa user={user} />;
+  }
+
   return (
     <div>
       <div className="flex justify-center bg-[#0071ab] py-4">
@@ -32,12 +66,15 @@ export default function Login() {
               <form
                 action=""
                 className="flex flex-col gap-4 p-6 w-[70%]"
+                onSubmit={handleSubmit}
               >
                 <input
                   className="p-4 mt-8 rounded-xl border"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
+                  type="text"
+                  name="username"
+                  placeholder="usuario"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                 />
                 <div className="relative">
                   <input
@@ -45,6 +82,8 @@ export default function Login() {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,11 +98,11 @@ export default function Login() {
                   </svg>
                 </div>
 
-                <Link to="/MenuPa">
-                  <button className="bg-[#0071AB] rounded-lg text-white py-4 px-6 hover:scale-105 duration-300">
+                  <button 
+                  type= "submit"
+                  className="bg-[#0071AB] rounded-lg text-white py-4 px-6 hover:scale-105 duration-300">
                     Login
                   </button>
-                </Link>
               </form>
             </div>
             <div className="flex-1 hidden md:block flex justify-center items-center"> {/* Oculta en dispositivos móviles */}
